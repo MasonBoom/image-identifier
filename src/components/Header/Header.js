@@ -1,9 +1,14 @@
 import React from "react";
+import {
+  HeaderContainer,
+} from "./header.styles";
 
 function Header() {
   return (
-    <>
-      <h1>Image Identification</h1>
-    </>
+    <HeaderContainer>
+      <h1>Header</h1>
+    </HeaderContainer>
   );
 }
+
+export default Header;
