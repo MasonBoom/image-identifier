@@ -4,6 +4,8 @@ import {
   MainContainer,
   SubContent,
   ImageContainer,
+  ImgIdButton,
+  ResultsContainer,
 } from "./mainContent.styles";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
@@ -11,6 +13,7 @@ const MainContent = () => {
   const [modelIsLoading, setModelIsLoading] = useState(false);
   const [model, setModel] = useState(null);
   const [image, setImage] = useState(null);
+  const [results, setResults] = useState([]);
   const imageRef = useRef();
 
   const loadModel = async () => {
@@ -35,6 +38,11 @@ const MainContent = () => {
     }
   }
 
+  const imageIdentify = async () => {
+    const results = await model.classify(imageRef.current);
+    setResults(results);
+  }
+
   useEffect(() => {
     loadModel();
   }, []);
@@ -47,11 +55,10 @@ const MainContent = () => {
     );
   }
 
-  console.log(image)
+  console.log(results)
 
   return (
     <>
-      <h1>Main Page</h1>
       {model && <h2>Model loaded</h2>}
       <InputContainer>
         <input 
@@ -60,10 +67,11 @@ const MainContent = () => {
           capture="camera"
           onChange={imageUpload}
         />
+        Upload Image
       </InputContainer>
       <MainContainer>
         <SubContent>
-          <ImageContainer>
+          <ImageContainer className={results.length > 1 ? "resultsRendered" : ""}>
             {image && <img 
               src={image} 
               alt="upload-preview" 
@@ -71,8 +79,22 @@ const MainContent = () => {
               ref={imageRef}
             />}
           </ImageContainer>
+          {results.length > 0 && (
+            <ResultsContainer>
+              {results.map((result, index) => {
+                return (
+                  <div key={index}>
+                    <span>{result.className}</span>
+                    <span>Confidence level: {(result.probability * 100).toFixed(2)} %
+                      {index === 0 && <span>Best Guess</span>}
+                    </span>
+                  </div>
+                );
+              })}
+            </ResultsContainer>
+          )}
         </SubContent>
-        {image && <button>Identify Image</button>}
+        {image && <ImgIdButton onClick={imageIdentify}>Identify Image</ImgIdButton>}
       </MainContainer>
     </>
   );

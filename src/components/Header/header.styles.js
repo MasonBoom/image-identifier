@@ -33,6 +33,6 @@ export const Title = styled.h1`
   color: #fff;
   text-shadow: 0px 0px 5px #000;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins';
   letter-spacing: 0.3rem;
 `;
