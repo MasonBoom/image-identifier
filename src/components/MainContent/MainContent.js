@@ -71,7 +71,7 @@ const MainContent = () => {
       </InputContainer>
       <MainContainer>
         <SubContent>
-          <ImageContainer className={results.length > 1 ? "resultsRendered" : ""}>
+          <ImageContainer>
             {image && <img 
               src={image} 
               alt="upload-preview" 
@@ -84,10 +84,9 @@ const MainContent = () => {
               {results.map((result, index) => {
                 return (
                   <div key={index}>
-                    <span>{result.className}</span>
-                    <span>Confidence level: {(result.probability * 100).toFixed(2)} %
-                      {index === 0 && <span>Best Guess</span>}
-                    </span>
+                    <span>{result.className.toUpperCase()}</span>
+                    <span>Confidence level: {(result.probability * 100).toFixed(2)} %</span>
+                    {index === 0 && <span className="bestGuess">Best Guess</span>}
                   </div>
                 );
               })}
