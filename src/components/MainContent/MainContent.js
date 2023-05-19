@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { 
-  InputContainer,
-  MainContainer,
+  ImgUpload,
+  ImgSelectionContainer,
   SubContent,
   ImageContainer,
   ImgIdButton,
   ResultsContainer,
+  Or,
+  PasteImgUrl,
 } from "./mainContent.styles";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
@@ -15,6 +17,7 @@ const MainContent = () => {
   const [image, setImage] = useState(null);
   const [results, setResults] = useState([]);
   const imageRef = useRef();
+  const textInputRef = useRef();
 
   const loadModel = async () => {
     setModelIsLoading(true);
@@ -43,6 +46,15 @@ const MainContent = () => {
     setResults(results);
   }
 
+  const handleChange = (e) => {
+    setImage(e.target.value);
+    setResults([]);
+  }
+
+  const fetchRandomImage = async () => {
+    
+  }
+
   useEffect(() => {
     loadModel();
   }, []);
@@ -60,16 +72,20 @@ const MainContent = () => {
   return (
     <>
       {model && <h2>Model loaded</h2>}
-      <InputContainer>
-        <input 
-          type="file" 
-          accept="image/*"
-          capture="camera"
-          onChange={imageUpload}
-        />
-        Upload Image
-      </InputContainer>
-      <MainContainer>
+      <ImgSelectionContainer>
+        <ImgUpload>
+          <input 
+            type="file" 
+            accept="image/*"
+            capture="camera"
+            onChange={imageUpload}
+          />
+          Upload Image
+        </ImgUpload>
+        <Or>Or</Or>
+        <PasteImgUrl ref={textInputRef} onChange={handleChange} />
+      </ImgSelectionContainer>
+      <main>
         <SubContent>
           <ImageContainer>
             {image && <img 
@@ -94,7 +110,7 @@ const MainContent = () => {
           )}
         </SubContent>
         {image && <ImgIdButton onClick={imageIdentify}>Identify Image</ImgIdButton>}
-      </MainContainer>
+      </main>
     </>
   );
 }

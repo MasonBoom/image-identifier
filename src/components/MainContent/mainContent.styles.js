@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputContainer = styled.label`
+export const ImgUpload = styled.label`
   display: block;
   margin: auto;
   margin-top: 25px;
@@ -12,7 +12,6 @@ export const InputContainer = styled.label`
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Poppins';
-  margin-bottom: 50px;
   width: 200px;
   text-align: center;
 
@@ -28,7 +27,12 @@ export const InputContainer = styled.label`
   }
 `;
 
-export const MainContainer = styled.main``;
+export const ImgSelectionContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  margin: auto;
+`;
 
 export const SubContent = styled.section`
   display: flex;
@@ -64,7 +68,7 @@ export const ImgIdButton = styled.button`
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Poppins';
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 
   &:hover {
     cursor: pointer;
@@ -122,5 +126,50 @@ export const ResultsContainer = styled.aside`
         font-weight: 700;
       }
     }
+  }
+`;
+
+export const Or = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 700;
+  align-self: center;
+  text-align: center;
+  font-family: 'Poppins';
+`;
+
+export const PasteImgUrl = styled.input.attrs(props => ({
+    type: "text",
+    placeholder: "Paste Image URL",
+  }))`
+  align-self: center;
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  background-color: #0DCEDA;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Poppins';
+  margin-bottom: 25px;
+  width: 200px;
+  text-align: center;
+  border: none; 
+
+  &:hover {
+    cursor: pointer;
+    background-color: #0DFFFA;
+    color: #fff;
+    box-shadow: 0px 2px 5px #000;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #fff;
   }
 `;
