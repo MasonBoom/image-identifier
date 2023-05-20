@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ImgUpload = styled.label`
   display: block;
   margin: auto;
-  margin-top: 25px;
   padding: 10px 25px;
   border: none;
   border-radius: 25px;
@@ -144,7 +143,6 @@ export const PasteImgUrl = styled.input.attrs(props => ({
   align-self: center;
   display: block;
   margin: auto;
-  margin-top: 25px;
   padding: 10px 25px;
   border: none;
   border-radius: 25px;
@@ -153,7 +151,6 @@ export const PasteImgUrl = styled.input.attrs(props => ({
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Poppins';
-  margin-bottom: 25px;
   width: 200px;
   text-align: center;
   border: none; 
@@ -172,4 +169,34 @@ export const PasteImgUrl = styled.input.attrs(props => ({
   &::placeholder {
     color: #fff;
   }
+`;
+
+export const RandomImgButton = styled.button`
+  align-self: center;
+  display: block;
+  margin: auto;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  background-color: #0DCEDA;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Poppins';
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 400px;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #0DFFFA;
+    color: #fff;
+    box-shadow: 0px 2px 5px #000;
+  }
+`;
+
+export const ButtonDescription = styled(Or)`
+  font-size: 1.2rem;
 `;

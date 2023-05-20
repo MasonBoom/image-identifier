@@ -8,6 +8,8 @@ import {
   ResultsContainer,
   Or,
   PasteImgUrl,
+  ButtonDescription,
+  RandomImgButton,
 } from "./mainContent.styles";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
@@ -52,8 +54,15 @@ const MainContent = () => {
   }
 
   const fetchRandomImage = async () => {
-    
-  }
+    try {
+      const response = await fetch('https://api.unsplash.com/photos/random?client_id=u9bjttyGiy2VxYlRg7Ewf9NBTa31APRgNYGXqziVbb8');
+      const data = await response.json();
+      setImage(data.urls.regular);
+      setResults([]);
+    } catch (error) {
+      console.log('Error fetching random image:', error);
+    }
+  };
 
   useEffect(() => {
     loadModel();
@@ -85,6 +94,8 @@ const MainContent = () => {
         <Or>Or</Or>
         <PasteImgUrl ref={textInputRef} onChange={handleChange} />
       </ImgSelectionContainer>
+      <ButtonDescription>Don't have any images? Click the button below!</ButtonDescription>
+      <RandomImgButton onClick={fetchRandomImage}>Get Random Image</RandomImgButton>
       <main>
         <SubContent>
           <ImageContainer>
