@@ -18,6 +18,7 @@ const MainContent = () => {
   const [model, setModel] = useState(null);
   const [image, setImage] = useState(null);
   const [results, setResults] = useState([]);
+
   const imageRef = useRef();
   const textInputRef = useRef();
 
@@ -38,12 +39,15 @@ const MainContent = () => {
     if(files.length > 0) {
       const url = URL.createObjectURL(files[0]);
       setImage(url);
+      imageRef.current.value = '';
+      setResults([]);
     } else {
       setImage(null);
     }
   }
 
   const imageIdentify = async () => {
+    textInputRef.current.value = '';
     const results = await model.classify(imageRef.current);
     setResults(results);
   }
