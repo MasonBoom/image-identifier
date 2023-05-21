@@ -67,7 +67,7 @@ export const ImgIdButton = styled.button`
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Poppins';
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 
   &:hover {
     cursor: pointer;
@@ -199,4 +199,46 @@ export const RandomImgButton = styled.button`
 
 export const ButtonDescription = styled(Or)`
   font-size: 1.2rem;
+`;
+
+export const RecentPredictions = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 80px;
+  align-items: center;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    align-self: center;
+    text-align: center;
+    font-family: 'Poppins';
+  }
+`;
+
+export const RecentPredictionsContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: auto;
+  overflow-x: auto;
+  
+  .imgContainer {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #0DCEDA;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+
+  img {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+  }
 `;

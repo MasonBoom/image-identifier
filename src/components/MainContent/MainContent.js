@@ -10,6 +10,8 @@ import {
   PasteImgUrl,
   ButtonDescription,
   RandomImgButton,
+  RecentPredictions,
+  RecentPredictionsContainer,
 } from "./mainContent.styles";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
@@ -18,6 +20,7 @@ const MainContent = () => {
   const [model, setModel] = useState(null);
   const [image, setImage] = useState(null);
   const [results, setResults] = useState([]);
+  const [recentPredictions, setRecentPredictions] = useState([]);
 
   const imageRef = useRef();
   const textInputRef = useRef();
@@ -71,6 +74,12 @@ const MainContent = () => {
   useEffect(() => {
     loadModel();
   }, []);
+
+  useEffect(() => {
+    if (image) {
+      setRecentPredictions((prevPredictions) => [...prevPredictions, image].reverse());
+    }
+  }, [image, setRecentPredictions]);
 
   if(modelIsLoading) {
     return (
@@ -126,6 +135,20 @@ const MainContent = () => {
         </SubContent>
         {image && <ImgIdButton onClick={imageIdentify}>Identify Image</ImgIdButton>}
       </main>
+      {recentPredictions.length > 0 && 
+        <RecentPredictions>
+          <h2>Recent Images</h2>
+          <RecentPredictionsContainer>
+            {recentPredictions.map((prediction, index) => {
+              return (
+                <div key={index} className="imgContainer">
+                  <img src={prediction} alt="Recent prediction" />
+                </div>
+              );
+            })}
+          </RecentPredictionsContainer>
+        </RecentPredictions>
+      }
     </>
   );
 }
