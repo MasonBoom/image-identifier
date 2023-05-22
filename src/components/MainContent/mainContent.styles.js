@@ -223,7 +223,7 @@ export const RecentPredictionsContainer = styled.section`
   flex-direction: row;
   width: 70%;
   margin: auto;
-  overflow-x: auto;
+  overflow-x: scroll;
   
   .imgContainer {
     display: flex;
