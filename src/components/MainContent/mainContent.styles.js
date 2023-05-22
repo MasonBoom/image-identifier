@@ -223,7 +223,6 @@ export const RecentPredictionsContainer = styled.section`
   flex-direction: row;
   width: 70%;
   margin: auto;
-  overflow-x: scroll;
   
   .imgContainer {
     display: flex;
@@ -234,6 +233,7 @@ export const RecentPredictionsContainer = styled.section`
     justify-content: center;
     align-items: center;
     margin: 10px;
+    overflow-x: scroll;
   }
 
   img {
