@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { 
+import {
   ImgUpload,
   ImgSelectionContainer,
   SubContent,
@@ -35,39 +35,43 @@ const MainContent = () => {
       console.log(error);
       setModelIsLoading(false);
     }
-  }
+  };
 
   const imageUpload = (e) => {
     const { files } = e.target;
-    if(files.length > 0) {
+    if (files.length > 0) {
       const url = URL.createObjectURL(files[0]);
       setImage(url);
-      imageRef.current.value = '';
       setResults([]);
     } else {
       setImage(null);
     }
-  }
+  };
 
   const imageIdentify = async () => {
-    textInputRef.current.value = '';
+    textInputRef.current.value = "";
     const results = await model.classify(imageRef.current);
     setResults(results);
-  }
+  };
 
-  const handleChange = (e) => {
-    setImage(e.target.value);
-    setResults([]);
-  }
+  const handleKeyDown = (e) => {
+    if(e.key === "Enter") {
+      setImage(e.target.value);
+      setResults([]);
+      textInputRef.current.value = "";
+    }
+  };
 
   const fetchRandomImage = async () => {
     try {
-      const response = await fetch('https://api.unsplash.com/photos/random?client_id=u9bjttyGiy2VxYlRg7Ewf9NBTa31APRgNYGXqziVbb8');
+      const response = await fetch(
+        "https://api.unsplash.com/photos/random?client_id=u9bjttyGiy2VxYlRg7Ewf9NBTa31APRgNYGXqziVbb8"
+      );
       const data = await response.json();
       setImage(data.urls.regular);
       setResults([]);
     } catch (error) {
-      console.log('Error fetching random image:', error);
+      console.log("Error fetching random image:", error);
     }
   };
 
@@ -81,7 +85,7 @@ const MainContent = () => {
     }
   }, [image, setRecentPredictions]);
 
-  if(modelIsLoading) {
+  if (modelIsLoading) {
     return (
       <div>
         <h1>Model loading...</h1>
@@ -89,15 +93,33 @@ const MainContent = () => {
     );
   }
 
-  console.log(results)
+  const imgContainers = [];
+  let currentRow = [];
+
+  recentPredictions.forEach((prediction, index) => {
+    currentRow.push(
+      <div key={index} className="imgContainer">
+        <img src={prediction} alt="Recent prediction" />
+      </div>
+    );
+
+    if (currentRow.length === 3 || index === recentPredictions.length - 1) {
+      imgContainers.push(
+        <div key={`row-${index}`} className="row">
+          {currentRow}
+        </div>
+      );
+      currentRow = [];
+    }
+  });
 
   return (
     <>
-      {model && <h2>Model loaded</h2>}
+      {model && <br/>}
       <ImgSelectionContainer>
         <ImgUpload>
-          <input 
-            type="file" 
+          <input
+            type="file"
             accept="image/*"
             capture="camera"
             onChange={imageUpload}
@@ -105,19 +127,23 @@ const MainContent = () => {
           Upload Image
         </ImgUpload>
         <Or>Or</Or>
-        <PasteImgUrl ref={textInputRef} onChange={handleChange} />
+        <PasteImgUrl ref={textInputRef} onKeyDown={handleKeyDown} />
       </ImgSelectionContainer>
       <ButtonDescription>Don't have any images? Click the button below!</ButtonDescription>
-      <RandomImgButton onClick={fetchRandomImage}>Get Random Image</RandomImgButton>
+      <RandomImgButton onClick={fetchRandomImage}>
+        Get Random Image
+      </RandomImgButton>
       <main>
         <SubContent>
           <ImageContainer>
-            {image && <img 
-              src={image} 
-              alt="upload-preview" 
-              crossOrigin="anonymous" 
-              ref={imageRef}
-            />}
+            {image && (
+              <img
+                src={image}
+                alt="upload-preview"
+                crossOrigin="anonymous"
+                ref={imageRef}
+              />
+            )}
           </ImageContainer>
           {results.length > 0 && (
             <ResultsContainer>
@@ -125,7 +151,9 @@ const MainContent = () => {
                 return (
                   <div key={index}>
                     <span>{result.className.toUpperCase()}</span>
-                    <span>Confidence level: {(result.probability * 100).toFixed(2)} %</span>
+                    <span>
+                      Confidence level: {(result.probability * 100).toFixed(2)} %
+                    </span>
                     {index === 0 && <span className="bestGuess">Best Guess</span>}
                   </div>
                 );
@@ -135,22 +163,14 @@ const MainContent = () => {
         </SubContent>
         {image && <ImgIdButton onClick={imageIdentify}>Identify Image</ImgIdButton>}
       </main>
-      {recentPredictions.length > 0 && 
+      {recentPredictions.length > 0 && (
         <RecentPredictions>
           <h2>Recent Images</h2>
-          <RecentPredictionsContainer>
-            {recentPredictions.map((prediction, index) => {
-              return (
-                <div key={index} className="imgContainer">
-                  <img src={prediction} alt="Recent prediction" />
-                </div>
-              );
-            })}
-          </RecentPredictionsContainer>
+          <RecentPredictionsContainer>{imgContainers}</RecentPredictionsContainer>
         </RecentPredictions>
-      }
+      )}
     </>
   );
-}
+};
 
 export default MainContent;

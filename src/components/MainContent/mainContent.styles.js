@@ -31,6 +31,7 @@ export const ImgSelectionContainer = styled.section`
   flex-direction: row;
   width: 700px;
   margin: auto;
+  margin-top: 20px;
 `;
 
 export const SubContent = styled.section`
@@ -220,25 +221,35 @@ export const RecentPredictions = styled.section`
 
 export const RecentPredictionsContainer = styled.section`
   display: flex;
-  flex-direction: row;
-  width: 70%;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 75%;
   margin: auto;
+  overflow-x: auto;
+  padding: 20px;
   
-  .imgContainer {
+  .row {
     display: flex;
-    width: 300px;
-    height: 300px;
-    border: 2px solid #0DCEDA;
-    border-radius: 10px;
+    flex-wrap: nowrap;
     justify-content: center;
-    align-items: center;
-    margin: 10px;
-    overflow-x: scroll;
-  }
+    margin-bottom: 20px;
 
-  img {
-    width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
+    .imgContainer {
+      display: flex;
+      flex-direction: row;
+      width: 400px;
+      height: 400px;
+      border: 2px solid #0DCEDA;
+      border-radius: 10px;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+
+    img {
+      width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
   }
-`;
+}`;
