@@ -1,4 +1,6 @@
-# Image Identifier [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Image Identifier
+
+<img src="./images/logo.png" alt="logo" width="100" height="80">
 
 This project is a react application that utilizes tensorflow.js to identify images. The user can upload an image of their own, paste an 
 image url, or generate a random image using Unsplash's random image API.
@@ -20,6 +22,8 @@ The application will then generate 3 guesses on what the image could be and disp
 
 ## Dependencies/Technologies Used
 
+* [JavaScript](https://www.javascript.com/)
+* [Node](https://www.nodejs.org/)
 * [React](https://reactjs.org/)
 * [Styled-Components](https://styled-components.com/)
 * [Tensorflow.js](https://www.tensorflow.org/js)
@@ -27,13 +31,11 @@ The application will then generate 3 guesses on what the image could be and disp
 * [Craco](https://www.npmjs.com/package/craco)
 * [Unsplash API](https://unsplash.com/developers)
 
+## Usage
+
 ## Installation
 
 In order to install this application, you will need to clone the repository onto your local machine. Once cloned, you will need to run `npm install` in order to install all of the dependencies. Once the dependencies are installed, you can run `npm start` to start the application.
-
-## Usage
-
-
 
 ## Contributing
 
@@ -41,7 +43,7 @@ We are not currently accepting contributors at the moment.
 
 ## License
 
-MIT License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 ## Tests
