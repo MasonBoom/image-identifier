@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   margin-bottom: 25px;
   margin-left: -10px;
   margin-top: -10px;
-  width: 100.1vw;
+  width: 99.4vw;
   background-color: #0DCEDA;
   border-radius: 0px 0px 25px 25px;
 `;

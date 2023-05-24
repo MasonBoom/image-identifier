@@ -1,4 +1,4 @@
-# Image Identifier
+# Image Identifier [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This project is a react application that utilizes tensorflow.js to identify images. The user can upload an image of their own, paste an 
 image url, or generate a random image using Unsplash's random image API.
@@ -41,9 +41,8 @@ We are not currently accepting contributors at the moment.
 
 ## License
 
-MIT License (
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-)
+MIT License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Tests
 
