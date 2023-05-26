@@ -106,8 +106,10 @@ export const ResultsContainer = styled.aside`
     span {
 
       &:first-child {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
+        max-height: 40px;
+        overflow: hidden;
       }
 
       &:nth-child(2) {
